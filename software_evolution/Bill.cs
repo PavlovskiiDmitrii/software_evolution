@@ -11,8 +11,12 @@ namespace software_evolution
             private List<Item> _items;
 
             private Customer _customer;
-            public Bill(Customer customer)
+
+            private IPresenter p;
+
+            public Bill(Customer customer,IPresenter p)
             {
+                this.p = p;
                 this._customer = customer;
                 this._items = new List<Item>();
             }
@@ -32,28 +36,13 @@ namespace software_evolution
                     usedBonus = _customer.useBonus((int)(each.GetSum() - each.GetDiscount()));
                 return usedBonus;
             }
-            public string GetHeader()
-            {
-                string headerresult = "Счет для " + _customer.getName() + "\n" + "\t" + "Название" + "\t" + "Цена" + "\t" + "Кол-во" + "Стоимость" + "\t" + "Скидка" + "\t" + "Сумма" + "\t" + "Бонус" + "\n";
-                return headerresult;
-            }
-            public string GetItemString(Item item, double discount, int bonus, double thisAmount)
-            {
-                string itemresult = "\t" + item.getGoods().getTitle() + "\t" + "\t" + item.getPrice() + "\t" + item.getQuantity() + "\t" + (item.GetSum()).ToString() + "\t" + discount.ToString() + "\t" + thisAmount.ToString() + "\t" + bonus.ToString() + "\n";
-                return itemresult;
-            }
-            public string GetFooter(double totalAmount, int totalBonus)
-            {
-                string Footerresult = "Сумма счета составляет " + totalAmount.ToString() + "\n" + "Вы заработали " + totalBonus.ToString() + " бонусных балов";
-                return Footerresult;
-            }
-
+           
             public String statement()
             {
                 double totalAmount = 0;
                 int totalBonus = 0;
                 List<Item>.Enumerator items = _items.GetEnumerator();
-                String result = GetHeader();
+                String result = p.GetHeader(_customer);
                 while (items.MoveNext())
                 {
                     double thisAmount = 0;
@@ -65,12 +54,12 @@ namespace software_evolution
                     int usedBonus = GetUsedBonus(each);
                     thisAmount = each.GetSum() - discount - usedBonus;
                     //показать результаты
-                    result += GetItemString(each, discount + usedBonus, bonus, thisAmount);
+                    result += p.GetItemString(each, discount + usedBonus, bonus, thisAmount);
                     totalAmount += thisAmount;
                     totalBonus += bonus;
                 }
                 //добавить нижний колонтитул
-                result += GetFooter(totalAmount, totalBonus);
+                result += p.GetFooter(totalAmount, totalBonus);
                 //Запомнить бонус клиента
                 _customer.receiveBonus(totalBonus);
 

@@ -25,7 +25,8 @@ namespace software_evolution
             result = line.Split(':');
             int bonus = Convert.ToInt32(result[1].Trim());
             Customer customer = new Customer(name, bonus);
-            Bill b = new Bill(customer);
+            IPresenter p = new TXTPresenter();
+            Bill b = new Bill(customer,p);
             // read goods count
             line = sr.ReadLine();
             result = line.Split(':');
