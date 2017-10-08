@@ -10,12 +10,12 @@ namespace software_evolution
     {
         public string GetHeader(Customer _customer)
         {
-            string headerresult = "Счет для " + _customer.getName() + "\n" + "\t" + "Название" + "\t" + "Цена" + "\t" + "Кол-во" + "Стоимость" + "\t" + "Скидка" + "\t" + "Сумма" + "\t" + "Бонус" + "\n";
+            string headerresult = "Счет для " + _customer.getName() + "\n" + "\n" +"\t" + "|Название|" + "\t" + "|Цена|" + "\t" + "|Кол-во|" + "|Стоимость|" + "\t" + "|Скидка|"  + "|Сумма|" + "\t" + "|Бонус|" + "\n";
             return headerresult;
         }
         public string GetItemString(Item item, double discount, int bonus, double thisAmount)
         {
-            string itemresult = "\t" + item.getGoods().getTitle() + "\t" + "\t" + item.getPrice() + "\t" + item.getQuantity() + "\t" + (item.GetSum()).ToString() + "\t" + discount.ToString() + "\t" + thisAmount.ToString() + "\t" + bonus.ToString() + "\n";
+            string itemresult = "\t" +"|"+ item.getGoods().getTitle() +"|"+ "\t" + "\t" + "|" + item.getPrice() + "|" + "\t" + "|" + item.getQuantity() + "|" + "\t" + "|" + (item.GetSum()).ToString() + "|" + "\t" + "\t" + "|" + discount.ToString() + "|" + "\t" + "|" + thisAmount.ToString() + "|" + "\t" + "|" + bonus.ToString() + "|" + "\n";
             return itemresult;
         }
         public string GetFooter(double totalAmount, int totalBonus)

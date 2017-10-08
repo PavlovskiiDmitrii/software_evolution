@@ -192,5 +192,19 @@ namespace software_evolution_test
             string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t38\t7\t266\t2,66\t263,34\t2\nСумма счета составляет 263,34\nВы заработали 2 бонусных балов";
             Assert.AreEqual(expected, bill);
         }
+
+        [Test]
+        public void HTMLPresenter()
+        {
+            Goods twix = new SaleGoods("Cola");
+            Item i1 = new Item(twix, 7, 38);
+            Customer x = new Customer("test", 0);
+            IPresenter p = new HTMLPresenter();
+            Bill b1 = new Bill(x, p);
+            b1.addGoods(i1);
+            string bill = b1.statement();
+            string expected = "Счет для test\n\n\t|Название|\t|Цена|\t|Кол-во||Стоимость|\t|Скидка||Сумма|\t|Бонус|\n\t|Cola|\t\t|38|\t|7|\t|266|\t\t|2,66|\t|263,34|\t|2|\nСумма счета составляет 263,34\nВы заработали 2 бонусных балов";
+            Assert.AreEqual(expected, bill);
+        }
     }
 }
