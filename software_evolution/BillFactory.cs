@@ -14,11 +14,10 @@ namespace software_evolution
     }
     public class BillFactory
     {
+        Goods _goods;
         // <<ФАБРИЧНЫЙ МЕТОД>>
         public Goods Create (Typeofdiscount id)
         {
-            Goods _goods;
-
             if (id == Typeofdiscount.RegularGoods)
             {
                 return _goods = new RegularGoods("cola");

@@ -31,7 +31,8 @@ namespace software_evolution
             int goodsCount = _yamlfile.GetGoodsCount();
             Goods[] g = new Goods[goodsCount];
             _yamlfile.SetTypeGoods(g);
-            _yamlfile.SetParameterItems(b,g);
+            _yamlfile.GetItemsCount();
+            _yamlfile.SetParameterItems(b, g);
 
 
             Console.WriteLine(_yamlfile.Returnbill(b));

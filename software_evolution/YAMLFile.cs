@@ -9,7 +9,7 @@ namespace software_evolution
 {
     class YAMLFile : AbstractContentFile
     {
-
+        BillFactory _billfactory = new BillFactory();
         TextReader sr;
         Customer customer;
         string line;
@@ -67,13 +67,13 @@ namespace software_evolution
                 switch (type)
                 {
                     case "REG":
-                        g[i] = new RegularGoods(result[0]);
-                        break;
+                        g[i] = _billfactory.Create(Typeofdiscount.RegularGoods);
+                            break;
                     case "SAL":
-                        g[i] = new SaleGoods(result[0]);
+                        g[i] = _billfactory.Create(Typeofdiscount.SaleGoods);
                         break;
                     case "SPO":
-                        g[i] = new SpecialOrderGoods(result[0]);
+                        g[i] = _billfactory.Create(Typeofdiscount.SpecialGoods);
                         break;
                 }
             }

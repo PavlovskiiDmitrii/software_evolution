@@ -16,7 +16,7 @@ namespace software_evolution
             string line = sr.ReadLine();
             string[] result = line.Split(':');
             string name = result[1].Trim();
-
+            BillFactory _billfactory = new BillFactory();
 
             // read bonus
             line = sr.ReadLine();
@@ -53,13 +53,13 @@ namespace software_evolution
                 switch (type)
                 {
                     case "REG":
-                        g[i] = new RegularGoods(result[0]);
+                        g[i] = _billfactory.Create(Typeofdiscount.RegularGoods);
                         break;
                     case "SAL":
-                        g[i] = new SaleGoods(result[0]);
+                        g[i] = _billfactory.Create(Typeofdiscount.SaleGoods);
                         break;
                     case "SPO":
-                        g[i] = new SpecialOrderGoods(result[0]);
+                        g[i] = _billfactory.Create(Typeofdiscount.SpecialGoods);
                         break;
                 }
             }
