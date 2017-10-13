@@ -117,9 +117,17 @@ namespace software_evolution
             result = line.Split(':');
         }
 
-        public string Returnbill(Bill b)
+        public string CreateBill(StreamReader sr, IPresenter p)
         {
-            return  b.statement();
+            SetSours(sr);
+            Readbonus();
+            GetCustomer();
+            Bill b = new Bill(GetCustomer(), p);
+            Goods[] g = new Goods[GetGoodsCount()];
+            SetTypeGoods(g);
+            GetItemsCount();
+            SetParameterItems(b, g);
+            return b.statement();
         }
 
 

@@ -19,26 +19,9 @@ namespace software_evolution
             }
             FileStream fs = new FileStream(filename, FileMode.Open);
             StreamReader sr = new StreamReader(fs);
-
             YAMLFile _yamlfile = new YAMLFile();
-            _yamlfile.SetSours(sr);
-            _yamlfile.Readbonus();
-            _yamlfile.GetCustomer();
-
             IPresenter p = new TXTPresenter();
-            Bill b = new Bill(_yamlfile.GetCustomer(), p);
-
-            int goodsCount = _yamlfile.GetGoodsCount();
-            Goods[] g = new Goods[goodsCount];
-            _yamlfile.SetTypeGoods(g);
-            _yamlfile.GetItemsCount();
-            _yamlfile.SetParameterItems(b, g);
-
-
-            Console.WriteLine(_yamlfile.Returnbill(b));
-
-            //GetText _gettext = new GetText();
-            //Console.WriteLine(_gettext.Get_String(sr));
+            Console.WriteLine(_yamlfile.CreateBill(sr,p));
 
             Console.ReadKey();
         }
