@@ -7,36 +7,18 @@ using System.Threading.Tasks;
 
 namespace software_evolution
 {
-    class AbstractContentFile 
+    abstract class AbstractContentFile 
     {
-        public Customer GetCustomer()
-        {
-            throw new NotImplementedException();
-        }
+        abstract public Customer GetCustomer();
 
-        public int GetGoodsCount()
-        {
-            throw new NotImplementedException();
-        }
+        abstract public int GetGoodsCount();
 
-        public int GetItemsCount()
-        {
-            throw new NotImplementedException();
-        }
+        abstract public int GetItemsCount();
 
-        public string GetNextGoods()
-        {
-            throw new NotImplementedException();
-        }
+        abstract public string GetNextGoods();
 
-        public string GetNextItem()
-        {
-            throw new NotImplementedException();
-        }
+        abstract public string GetNextItem();
 
-        public void SetSours()
-        {
-            throw new NotImplementedException();
-        }
+        abstract public void SetSours(TextReader sr);
     }
 }

@@ -18,20 +18,30 @@ namespace software_evolution
         int bonus;
         int itemsCount;
 
-        public void SetSours(TextReader sr)
+        public override string GetNextGoods()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetNextItem()
+        {
+            throw new NotImplementedException();
+        }
+
+        override public void SetSours(TextReader sr)
         {
             this.sr = sr;
             GetNextLine();
             name = result[1].Trim();
         }
 
-        public void Readbonus()
+         public void Readbonus()
         {
             GetNextLine();
             bonus = Convert.ToInt32(result[1].Trim());
         }
 
-        public Customer GetCustomer()
+       override public Customer GetCustomer()
         {
             customer = new Customer(name, bonus);
             return customer;
@@ -40,7 +50,7 @@ namespace software_evolution
         //IPresenter p = new TXTPresenter();
         //Bill b = new Bill(customer, p);
 
-        public int GetGoodsCount()
+        override public int GetGoodsCount()
         {
             GetNextLine();
             int goodsCount = Convert.ToInt32(result[1].Trim());
@@ -67,19 +77,19 @@ namespace software_evolution
                 switch (type)
                 {
                     case "REG":
-                        g[i] = _billfactory.Create(Typeofdiscount.RegularGoods);
+                        g[i] = _billfactory.Create(Typeofdiscount.RegularGoods,result[0]);
                             break;
                     case "SAL":
-                        g[i] = _billfactory.Create(Typeofdiscount.SaleGoods);
+                        g[i] = _billfactory.Create(Typeofdiscount.SaleGoods, result[0]);
                         break;
                     case "SPO":
-                        g[i] = _billfactory.Create(Typeofdiscount.SpecialGoods);
+                        g[i] = _billfactory.Create(Typeofdiscount.SpecialGoods, result[0]);
                         break;
                 }
             }
         }
 
-        public int GetItemsCount()
+        override public int GetItemsCount()
         {
             do
             {
@@ -117,7 +127,7 @@ namespace software_evolution
             result = line.Split(':');
         }
 
-        public string CreateBill(StreamReader sr, IPresenter p)
+        public Bill CreateBill(StreamReader sr, IPresenter p)
         {
             SetSours(sr);
             Readbonus();
@@ -127,7 +137,7 @@ namespace software_evolution
             SetTypeGoods(g);
             GetItemsCount();
             SetParameterItems(b, g);
-            return b.statement();
+            return b;
         }
 
 

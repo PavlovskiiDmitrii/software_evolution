@@ -53,13 +53,13 @@ namespace software_evolution
                 switch (type)
                 {
                     case "REG":
-                        g[i] = _billfactory.Create(Typeofdiscount.RegularGoods);
+                        g[i] = _billfactory.Create(Typeofdiscount.RegularGoods, result[0]);
                         break;
                     case "SAL":
-                        g[i] = _billfactory.Create(Typeofdiscount.SaleGoods);
+                        g[i] = _billfactory.Create(Typeofdiscount.SaleGoods, result[0]);
                         break;
                     case "SPO":
-                        g[i] = _billfactory.Create(Typeofdiscount.SpecialGoods);
+                        g[i] = _billfactory.Create(Typeofdiscount.SpecialGoods, result[0]);
                         break;
                 }
             }

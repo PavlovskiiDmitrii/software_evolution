@@ -16,19 +16,19 @@ namespace software_evolution
     {
         Goods _goods;
         // <<ФАБРИЧНЫЙ МЕТОД>>
-        public Goods Create (Typeofdiscount id)
+        public Goods Create (Typeofdiscount id,string title)
         {
             if (id == Typeofdiscount.RegularGoods)
             {
-                return _goods = new RegularGoods("cola");
+                return _goods = new RegularGoods(title);
             }
             if(id == Typeofdiscount.SaleGoods)
             {
-                return _goods = new SaleGoods("cola");
+                return _goods = new SaleGoods(title);
             }
             if(id == Typeofdiscount.SpecialGoods)
             {
-                return _goods = new SpecialOrderGoods("cola");
+                return _goods = new SpecialOrderGoods(title);
             }
             return null;
         }

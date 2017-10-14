@@ -21,7 +21,8 @@ namespace software_evolution
             StreamReader sr = new StreamReader(fs);
             YAMLFile _yamlfile = new YAMLFile();
             IPresenter p = new TXTPresenter();
-            Console.WriteLine(_yamlfile.CreateBill(sr,p));
+            Bill b = _yamlfile.CreateBill(sr,p);
+            Console.WriteLine(b.statement());
 
             Console.ReadKey();
         }
