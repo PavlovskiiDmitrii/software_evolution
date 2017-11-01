@@ -8,7 +8,7 @@ namespace software_evolution
 {
     class SpecialStrategyBonus : IStrategyBonus
     {
-        public double GetBonusValue(Item item)
+        public double GetBonusValue(Item item, double summ)
         {
             return 0;
         }

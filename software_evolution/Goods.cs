@@ -11,6 +11,7 @@ namespace software_evolution
         protected String _title;
         public IStrategyBonus _istrategyBonus;
         public IStrategyDiscount _istrategyDiscount;
+        public double summ;
 
         public Goods(String title, IStrategyBonus strategyBonus, IStrategyDiscount strategyDiscount)
         {
@@ -19,6 +20,7 @@ namespace software_evolution
             _istrategyDiscount = strategyDiscount;
         }
 
+
         public String getTitle()
         {
             return _title;
@@ -26,17 +28,18 @@ namespace software_evolution
 
         public double GetSum(Item each)
         {
-            return each.getQuantity() * each.getPrice();
+            summ = each.getQuantity() * each.getPrice();
+            return summ;
         }
 
         public double GetDiscount(Item each)
         {
-            return _istrategyDiscount.GetDiscountValue(each);
+            return _istrategyDiscount.GetDiscountValue(each,summ);
         }
 
         public double GetBonus(Item each)
         {
-            return _istrategyBonus.GetBonusValue(each);
+            return _istrategyBonus.GetBonusValue(each,summ);
         }
     }
 }

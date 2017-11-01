@@ -8,6 +8,6 @@ namespace software_evolution
 {
     public interface IStrategyDiscount
     {
-        double GetDiscountValue(Item item);
+        double GetDiscountValue(Item item, double summ);
     }
 }

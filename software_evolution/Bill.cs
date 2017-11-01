@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows;
+using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,16 +26,22 @@ namespace software_evolution
             {
                 _items.Add(arg);
             }
-
+        
             public int GetUsedBonus(Item each)
             {
-                int usedBonus = 0;
-                if ((each.getGoods().GetType() ==
-                  typeof(RegularGoods)) && each.getQuantity() > 5)
-                    usedBonus = _customer.useBonus((int)(each.GetSum() - each.GetBonus()));
-                if ((each.getGoods().GetType() ==
-                  typeof(SpecialOrderGoods)) && each.getQuantity() > 1)
-                    usedBonus = _customer.useBonus((int)(each.GetSum() - each.GetDiscount()));
+             
+                 int usedBonus = 0;
+            
+                 if ((each.getGoods().GetType() == typeof(RegularStrategyBonus)) && each.getQuantity() > 5)
+                 {
+                  usedBonus = _customer.useBonus((int)(each.GetSum() - each.GetBonus()));
+                 }
+
+                 if ((each.getGoods().GetType() == typeof(SpecialStrategyBonus)) && each.getQuantity() > 1)
+            {
+                  usedBonus = _customer.useBonus((int)(each.GetSum() - each.GetDiscount()));
+                 }
+
                 return usedBonus;
             }
            
@@ -50,13 +58,13 @@ namespace software_evolution
                     //определить сумму для каждой строки
 
                     double discount = each.GetDiscount();
-                    int bonus = each.GetBonus();
+                    double bonus = each.GetBonus();
                     int usedBonus = GetUsedBonus(each);
                     thisAmount = each.GetSum() - discount - usedBonus;
                     //показать результаты
-                    result += p.GetItemString(each, discount + usedBonus, bonus, thisAmount);
+                    result += p.GetItemString(each, discount + usedBonus, (int)bonus, thisAmount);
                     totalAmount += thisAmount;
-                    totalBonus += bonus;
+                    totalBonus += (int)bonus;
                 }
                 //добавить нижний колонтитул
                 result += p.GetFooter(totalAmount, totalBonus);

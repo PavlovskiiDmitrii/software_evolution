@@ -30,7 +30,7 @@ namespace software_evolution
             return _Goods;
         }
 
-        public int GetBonus()
+        public double GetBonus()
         {
             return _Goods.GetBonus(this);
         }

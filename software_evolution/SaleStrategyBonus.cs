@@ -8,10 +8,10 @@ namespace software_evolution
 {
     class SaleStrategyBonus : IStrategyBonus
     {
-        public double GetBonusValue(Item each)
+        public double GetBonusValue(Item each, double summ)
         {
-            int bonus = 0;
-            bonus = (int)(GetSum(each) * 0.01);
+            double bonus = 0;
+            bonus = summ * 0.01;
             return bonus;
         }
     }

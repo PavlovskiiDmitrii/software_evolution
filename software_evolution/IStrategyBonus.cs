@@ -8,6 +8,6 @@ namespace software_evolution
 {
     public interface IStrategyBonus
     {
-        double GetBonusValue(Item item);
+        double GetBonusValue(Item item,double summ);
     }
 }

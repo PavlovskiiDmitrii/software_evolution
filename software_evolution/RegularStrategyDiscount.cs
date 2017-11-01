@@ -8,11 +8,11 @@ namespace software_evolution
 {
     class RegularStrategyDiscount : IStrategyDiscount
     {
-        public double GetDiscountValue(Item each)
+        public double GetDiscountValue(Item each, double summ)
         {
             double discount = 0;
             if (each.getQuantity() > 2)
-                discount = GetSum(each) * 0.03; // 3%
+                discount = summ * 0.03; // 3%
             return discount;
         }
     }
