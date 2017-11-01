@@ -55,8 +55,8 @@ namespace software_evolution
                 {
                     double thisAmount = 0;
                     Item each = (Item)items.Current;
-                    //определить сумму для каждой строки
-
+                //определить сумму для каждой строки
+                    each.SetSumm();
                     double discount = each.GetDiscount();
                     double bonus = each.GetBonus();
                     int usedBonus = GetUsedBonus(each);

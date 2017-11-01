@@ -11,8 +11,18 @@ namespace software_evolution
         public double GetDiscountValue(Item each, double summ)
         {
             double discount = 0;
-            if (each.getQuantity() > 10)
-                discount = summ * 0.05; // 0.5%
+            if (summ > 100 && summ < 300)
+            {
+                discount = summ*0.01;
+            }
+            if (summ >= 300 && summ < 1000)
+            {
+                discount = summ * 0.05;
+            }
+            if (summ >= 1000)
+            {
+                discount = summ * 0.07;
+            }
             return discount;
         }
     }

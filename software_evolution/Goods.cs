@@ -26,10 +26,13 @@ namespace software_evolution
             return _title;
         }
 
+        public void SetSumm(Item each)
+        {
+            summ = each.getQuantity() * each.getPrice(); ;
+        }
         public double GetSum(Item each)
         {
-            summ = each.getQuantity() * each.getPrice();
-            return summ;
+          return   each.getQuantity() * each.getPrice();
         }
 
         public double GetDiscount(Item each)

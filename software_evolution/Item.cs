@@ -39,6 +39,10 @@ namespace software_evolution
         {
             return _Goods.GetDiscount(this);
         }
+        public void SetSumm()
+        {
+            _Goods.SetSumm(this);
+        }
 
         public double GetSum()
         {
