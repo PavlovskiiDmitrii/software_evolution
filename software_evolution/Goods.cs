@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace software_evolution
 {
-    public abstract class Goods
+    public class Goods
     {
         protected String _title;
+        public IStrategyBonus _istrategyBonus;
+        public IStrategyDiscount _istrategyDiscount;
 
-        public Goods(String title)
+        public Goods(String title, IStrategyBonus strategyBonus, IStrategyDiscount strategyDiscount)
         {
             _title = title;
+            _istrategyBonus = strategyBonus;
+            _istrategyDiscount = strategyDiscount;
         }
 
         public String getTitle()
@@ -22,12 +26,17 @@ namespace software_evolution
 
         public double GetSum(Item each)
         {
-            double sum = each.getQuantity() * each.getPrice();
-            return sum;
+            return each.getQuantity() * each.getPrice();
         }
 
-        abstract public double GetDiscount(Item each);
+        public double GetDiscount(Item each)
+        {
+            return _istrategyDiscount.GetDiscountValue(each);
+        }
 
-        abstract public int GetBonus(Item each);
+        public double GetBonus(Item each)
+        {
+            return _istrategyBonus.GetBonusValue(each);
+        }
     }
 }
