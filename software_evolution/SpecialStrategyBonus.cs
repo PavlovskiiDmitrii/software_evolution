@@ -10,7 +10,12 @@ namespace software_evolution
     {
         public double GetBonusValue(Item item, double summ)
         {
-            return 0;
+            double bonus = 0;
+            if (summ > 500)
+            {
+                bonus = (summ/item.getPrice())*5;
+            }
+            return bonus;
         }
     }
 }

@@ -20,15 +20,15 @@ namespace software_evolution
         {
             if (id == Typeofdiscount.RegularGoods)
             {
-                return _goods = new Goods(title, new RegularStrategyBonus(), new RegularStrategyDiscount());
+                return _goods = new Goods(title, Typeofdiscount.RegularGoods, new RegularStrategyBonus(), new RegularStrategyDiscount());
             }
             if(id == Typeofdiscount.SaleGoods)
             {
-                return _goods = new Goods(title, new SaleStrategyBonus(), new SaleStrategyDiscount());
+                return _goods = new Goods(title, Typeofdiscount.SaleGoods, new SaleStrategyBonus(), new SaleStrategyDiscount());
             }
             if(id == Typeofdiscount.SpecialGoods)
             {
-                return _goods = new Goods(title, new SpecialStrategyBonus(), new SpecialStrategyDiscount());
+                return _goods = new Goods(title, Typeofdiscount.SpecialGoods, new SpecialStrategyBonus(), new SpecialStrategyDiscount());
             }
             return null;
         }

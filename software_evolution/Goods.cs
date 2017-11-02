@@ -9,12 +9,14 @@ namespace software_evolution
     public class Goods
     {
         protected String _title;
+        public Typeofdiscount _type;
         public IStrategyBonus _istrategyBonus;
         public IStrategyDiscount _istrategyDiscount;
         public double summ;
 
-        public Goods(String title, IStrategyBonus strategyBonus, IStrategyDiscount strategyDiscount)
+        public Goods(String title, Typeofdiscount type, IStrategyBonus strategyBonus, IStrategyDiscount strategyDiscount)
         {
+            _type = type;
             _title = title;
             _istrategyBonus = strategyBonus;
             _istrategyDiscount = strategyDiscount;
@@ -24,6 +26,10 @@ namespace software_evolution
         public String getTitle()
         {
             return _title;
+        }
+        public Typeofdiscount getGoodsType()
+        {
+            return _type;
         }
 
         public void SetSumm(Item each)

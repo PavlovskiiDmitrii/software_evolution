@@ -32,12 +32,12 @@ namespace software_evolution
              
                  int usedBonus = 0;
             
-                 if ((each.getGoods().GetType() == typeof(RegularStrategyBonus)) && each.getQuantity() > 5)
+                 if (each.getGoods().getGoodsType() == Typeofdiscount.RegularGoods && each.getQuantity() > 5)
                  {
                   usedBonus = _customer.useBonus((int)(each.GetSum() - each.GetBonus()));
                  }
 
-                 if ((each.getGoods().GetType() == typeof(SpecialStrategyBonus)) && each.getQuantity() > 1)
+                 if (each.getGoods().getGoodsType() == Typeofdiscount.SpecialGoods && each.getQuantity() > 1)
             {
                   usedBonus = _customer.useBonus((int)(each.GetSum() - each.GetDiscount()));
                  }
@@ -67,7 +67,7 @@ namespace software_evolution
                     totalBonus += (int)bonus;
                 }
                 //добавить нижний колонтитул
-                result += p.GetFooter(totalAmount, totalBonus);
+                result += p.GetFooter(totalAmount - _customer.getBonus(), totalBonus);
                 //Запомнить бонус клиента
                 _customer.receiveBonus(totalBonus);
 
