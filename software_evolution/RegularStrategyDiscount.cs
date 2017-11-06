@@ -8,21 +8,25 @@ namespace software_evolution
 {
     class RegularStrategyDiscount : IStrategyDiscount
     {
-        public double GetDiscountValue(Item each, double summ)
+        public double StandartDiscountValue(Item each, ReadConfingfile readConfingfile)
         {
             double discount = 0;
-            if (summ > 100 && summ < 300)
+
+            if (each.getQuantity() > 2)
             {
-                discount = summ * 0.01;
+                discount = each.GetSum() * readConfingfile.DiscounRegular;
             }
-            if (summ >= 300 && summ < 1000)
+
+            return discount;
+        }
+        public double FestiveDiscountValue(Item each, ReadConfingfile readConfingfile)
+        {
+            double discount = 0;
+            if (each.GetSum() > readConfingfile.SummRegular)
             {
-                discount = summ * 0.03;
+                discount = each.GetSum() * readConfingfile.DiscounRegular;
             }
-            if (summ >= 1000)
-            {
-                discount = summ * 0.05;
-            }
+
             return discount;
         }
     }

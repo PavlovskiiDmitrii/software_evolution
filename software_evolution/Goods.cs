@@ -13,13 +13,15 @@ namespace software_evolution
         public IStrategyBonus _istrategyBonus;
         public IStrategyDiscount _istrategyDiscount;
         public double summ;
+        ReadConfingfile Confingfile;
 
-        public Goods(String title, Typeofdiscount type, IStrategyBonus strategyBonus, IStrategyDiscount strategyDiscount)
+        public Goods(String title, Typeofdiscount type, IStrategyBonus strategyBonus, IStrategyDiscount strategyDiscount, ReadConfingfile readConfingfile)
         {
             _type = type;
             _title = title;
             _istrategyBonus = strategyBonus;
             _istrategyDiscount = strategyDiscount;
+            Confingfile = readConfingfile;
         }
 
 
@@ -38,17 +40,26 @@ namespace software_evolution
         }
         public double GetSum(Item each)
         {
-          return   each.getQuantity() * each.getPrice();
+          return each.getQuantity() * each.getPrice();
         }
 
         public double GetDiscount(Item each)
         {
-            return _istrategyDiscount.GetDiscountValue(each,summ);
+            if(Confingfile.ValueView == "standart")
+            {
+                return _istrategyDiscount.StandartDiscountValue(each, Confingfile);
+            }
+
+            return _istrategyDiscount.FestiveDiscountValue(each, Confingfile);
         }
 
         public double GetBonus(Item each)
         {
-            return _istrategyBonus.GetBonusValue(each,summ);
+            if(Confingfile.ValueView == "standart")
+            {
+                return _istrategyBonus.StandartBonusValue(each, Confingfile);
+            }
+            return _istrategyBonus.FestiveBonusValue(each, Confingfile);
         }
     }
 }

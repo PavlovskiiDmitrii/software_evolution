@@ -8,13 +8,25 @@ namespace software_evolution
 {
     class SaleStrategyBonus : IStrategyBonus
     {
-        public double GetBonusValue(Item each, double summ)
+        public double StandartBonusValue(Item each, ReadConfingfile readConfingfile)
         {
             double bonus = 0;
-            if(summ > 1000)
+
+            if (each.getQuantity() > 10)
             {
-                bonus = summ * 0.01;
+                bonus = each.GetSum() * readConfingfile.BonusSale;
             }
+
+            return bonus;
+        }
+        public double FestiveBonusValue(Item each, ReadConfingfile readConfingfile)
+        {
+            double bonus = 0;
+            if (each.GetSum() > readConfingfile.SummSale)
+            {
+                bonus = each.GetSum() * readConfingfile.BonusSale;
+            }
+
             return bonus;
         }
     }

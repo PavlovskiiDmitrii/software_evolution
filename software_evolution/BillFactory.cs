@@ -15,20 +15,21 @@ namespace software_evolution
     public class BillFactory
     {
         Goods _goods;
+        ReadConfingfile ConfingValue = new ReadConfingfile();
         // <<ФАБРИЧНЫЙ МЕТОД>>
         public Goods Create (Typeofdiscount id,string title)
         {
             if (id == Typeofdiscount.RegularGoods)
             {
-                return _goods = new Goods(title, Typeofdiscount.RegularGoods, new RegularStrategyBonus(), new RegularStrategyDiscount());
+                return _goods = new Goods(title, Typeofdiscount.RegularGoods, new RegularStrategyBonus(), new RegularStrategyDiscount(),ConfingValue);
             }
             if(id == Typeofdiscount.SaleGoods)
             {
-                return _goods = new Goods(title, Typeofdiscount.SaleGoods, new SaleStrategyBonus(), new SaleStrategyDiscount());
+                return _goods = new Goods(title, Typeofdiscount.SaleGoods, new SaleStrategyBonus(), new SaleStrategyDiscount(), ConfingValue);
             }
             if(id == Typeofdiscount.SpecialGoods)
             {
-                return _goods = new Goods(title, Typeofdiscount.SpecialGoods, new SpecialStrategyBonus(), new SpecialStrategyDiscount());
+                return _goods = new Goods(title, Typeofdiscount.SpecialGoods, new SpecialStrategyBonus(), new SpecialStrategyDiscount(), ConfingValue);
             }
             return null;
         }

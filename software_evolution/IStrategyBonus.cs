@@ -8,6 +8,7 @@ namespace software_evolution
 {
     public interface IStrategyBonus
     {
-        double GetBonusValue(Item item,double summ);
+        double StandartBonusValue(Item item, ReadConfingfile readConfingfile);
+        double FestiveBonusValue(Item item, ReadConfingfile readConfingfile);
     }
 }

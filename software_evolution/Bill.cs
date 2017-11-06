@@ -66,8 +66,9 @@ namespace software_evolution
                     totalAmount += thisAmount;
                     totalBonus += (int)bonus;
                 }
+                totalAmount = totalAmount - _customer.getBonus();
                 //добавить нижний колонтитул
-                result += p.GetFooter(totalAmount - _customer.getBonus(), totalBonus);
+                result += p.GetFooter(totalAmount, totalBonus);
                 //Запомнить бонус клиента
                 _customer.receiveBonus(totalBonus);
 

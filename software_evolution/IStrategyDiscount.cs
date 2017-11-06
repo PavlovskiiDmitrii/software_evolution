@@ -8,6 +8,7 @@ namespace software_evolution
 {
     public interface IStrategyDiscount
     {
-        double GetDiscountValue(Item item, double summ);
+        double StandartDiscountValue(Item item, ReadConfingfile readConfingfile);
+        double FestiveDiscountValue(Item item, ReadConfingfile readConfingfile);
     }
 }
