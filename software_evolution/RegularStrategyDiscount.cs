@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace software_evolution
 {
-    class RegularStrategyDiscount : IStrategyDiscount
+    public class RegularStrategyDiscount : IStrategyDiscount
     {
         public double StandartDiscountValue(Item each, ReadConfingfile readConfingfile)
         {

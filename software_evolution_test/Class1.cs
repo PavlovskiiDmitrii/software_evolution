@@ -11,10 +11,12 @@ namespace software_evolution_test
     [TestFixture]
     public class Tests
     {
+
+        ReadConfingfile ConfingValue = new ReadConfingfile();
         [Test]
-        public void RegLess1()
+        public void RegLess1_()
         {
-            Goods cola = new RegularGoods("Cola");
+            Goods cola = new Goods("Cola", Typeofdiscount.RegularGoods, new RegularStrategyBonus(), new RegularStrategyDiscount(), ConfingValue);
             Item i1 = new Item(cola, 1, 65);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
@@ -26,9 +28,9 @@ namespace software_evolution_test
         }
 
         [Test]
-        public void RegMore2()
+        public void RegMore2_()
         {
-            Goods cola = new RegularGoods("Cola");
+            Goods cola = new Goods("Cola", Typeofdiscount.RegularGoods, new RegularStrategyBonus(), new RegularStrategyDiscount(), ConfingValue);
             Item i1 = new Item(cola, 6, 65);
             Customer x = new Customer("test", 10);
             IPresenter p = new TXTPresenter();
@@ -40,10 +42,10 @@ namespace software_evolution_test
         }
 
         [Test]
-        public void SaleLess3()
+        public void SaleLess3_()
         {
-            Goods twix = new SaleGoods("Cola");
-            Item i1 = new Item(twix, 2, 38);
+            Goods cola = new Goods("Cola", Typeofdiscount.SaleGoods, new SaleStrategyBonus(), new SaleStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(cola, 2, 38);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
@@ -56,8 +58,8 @@ namespace software_evolution_test
         [Test]
         public void SpecialLess10()
         {
-            Goods bread = new SpecialOrderGoods("Cola");
-            Item i1 = new Item(bread, 8, 23);
+            Goods Cola = new Goods("Cola", Typeofdiscount.SpecialGoods, new SpecialStrategyBonus(), new SpecialStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(Cola, 8, 23);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
@@ -70,22 +72,22 @@ namespace software_evolution_test
         [Test]
         public void SpecialMore10()
         {
-            Goods bread = new SpecialOrderGoods("Cola");
-            Item i1 = new Item(bread, 13, 23);
+            Goods Cola = new Goods("Cola", Typeofdiscount.SpecialGoods, new SpecialStrategyBonus(), new SpecialStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(Cola, 13, 23);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
             b1.addGoods(i1);
             string bill = b1.statement();
-            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t23\t13\t299\t1,495\t297,505\t0\nСумма счета составляет 297,505\nВы заработали 0 бонусных балов";
+            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t23\t13\t299\t14,95\t284,05\t0\nСумма счета составляет 284,05\nВы заработали 0 бонусных балов";
             Assert.AreEqual(expected, bill);
         }
 
         [Test]
         public void SaleMore3()
         {
-            Goods twix = new SaleGoods("Cola");
-            Item i1 = new Item(twix, 7, 38);
+            Goods cola = new Goods("Cola", Typeofdiscount.SaleGoods, new SaleStrategyBonus(), new SaleStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(cola, 7, 38);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
@@ -98,8 +100,8 @@ namespace software_evolution_test
         [Test]
         public void BRegular()
         {
-            Goods bonaqua = new RegularGoods("Cola");
-            Item i1 = new Item(bonaqua, 8, 40);
+            Goods cola = new Goods("Cola", Typeofdiscount.RegularGoods, new RegularStrategyBonus(), new RegularStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(cola, 8, 40);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
@@ -112,8 +114,8 @@ namespace software_evolution_test
         [Test]
         public void BsSale()
         {
-            Goods doshirak = new SaleGoods("Cola");
-            Item i1 = new Item(doshirak, 20, 36);
+            Goods cola = new Goods("Cola", Typeofdiscount.SaleGoods, new SaleStrategyBonus(), new SaleStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(cola, 20, 36);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
@@ -126,8 +128,8 @@ namespace software_evolution_test
         [Test]
         public void BSpecial()
         {
-            Goods lays = new SpecialOrderGoods("Cola");
-            Item i1 = new Item(lays, 2, 93);
+            Goods Cola = new Goods("Cola", Typeofdiscount.SpecialGoods, new SpecialStrategyBonus(), new SpecialStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(Cola, 2, 93);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
@@ -136,26 +138,25 @@ namespace software_evolution_test
             string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t93\t2\t186\t0\t186\t0\nСумма счета составляет 186\nВы заработали 0 бонусных балов";
             Assert.AreEqual(expected, bill);
         }
-
         [Test]
         public void UseBRegularLess5()
         {
-            Goods cola = new RegularGoods("Cola");
+            Goods cola = new Goods("Cola", Typeofdiscount.RegularGoods, new RegularStrategyBonus(), new RegularStrategyDiscount(), ConfingValue);
             Item i1 = new Item(cola, 1, 65);
             Customer x = new Customer("test", 20);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
             b1.addGoods(i1);
             string bill = b1.statement();
-            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t1\t65\t0\t65\t3\nСумма счета составляет 65\nВы заработали 3 бонусных балов";
+            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t1\t65\t0\t65\t3\nСумма счета составляет 45\nВы заработали 3 бонусных балов";
             Assert.AreEqual(expected, bill);
         }
 
         [Test]
         public void UseBSpecial()
         {
-            Goods bread = new SpecialOrderGoods("Cola");
-            Item i1 = new Item(bread, 10, 23);
+            Goods Cola = new Goods("Cola", Typeofdiscount.SpecialGoods, new SpecialStrategyBonus(), new SpecialStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(Cola, 10, 23);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
@@ -168,7 +169,7 @@ namespace software_evolution_test
         [Test]
         public void UseBRegularMore5()
         {
-            Goods cola = new RegularGoods("Cola");
+            Goods cola = new Goods("Cola", Typeofdiscount.RegularGoods, new RegularStrategyBonus(), new RegularStrategyDiscount(), ConfingValue);
             Item i1 = new Item(cola, 6, 65);
             Customer x = new Customer("test", 30);
             IPresenter p = new TXTPresenter();
@@ -182,8 +183,8 @@ namespace software_evolution_test
         [Test]
         public void UseBSaleMore1()
         {
-            Goods twix = new SaleGoods("Cola");
-            Item i1 = new Item(twix, 7, 38);
+            Goods cola = new Goods("Cola", Typeofdiscount.SaleGoods, new SaleStrategyBonus(), new SaleStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(cola, 7, 38);
             Customer x = new Customer("test", 0);
             IPresenter p = new TXTPresenter();
             Bill b1 = new Bill(x, p);
@@ -196,8 +197,8 @@ namespace software_evolution_test
         [Test]
         public void HTMLPresenter()
         {
-            Goods twix = new SaleGoods("Cola");
-            Item i1 = new Item(twix, 7, 38);
+            Goods cola = new Goods("Cola", Typeofdiscount.SaleGoods, new SaleStrategyBonus(), new SaleStrategyDiscount(), ConfingValue);
+            Item i1 = new Item(cola, 7, 38);
             Customer x = new Customer("test", 0);
             IPresenter p = new HTMLPresenter();
             Bill b1 = new Bill(x, p);

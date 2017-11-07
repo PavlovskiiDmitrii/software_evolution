@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace software_evolution
 {
-    class SaleStrategyDiscount : IStrategyDiscount
+    public class SaleStrategyDiscount : IStrategyDiscount
     {
         public double StandartDiscountValue(Item each, ReadConfingfile readConfingfile)
         {
             double discount = 0;
 
-            if (each.getQuantity() > 10)
+            if (each.getQuantity() > 3)
             {
                 discount = each.GetSum() * readConfingfile.DiscounSale;
             }

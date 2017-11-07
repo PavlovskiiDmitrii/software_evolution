@@ -6,18 +6,11 @@ using System.Threading.Tasks;
 
 namespace software_evolution
 {
-    class RegularStrategyBonus : IStrategyBonus
+  public  class RegularStrategyBonus : IStrategyBonus
     {
         public double StandartBonusValue(Item each, ReadConfingfile readConfingfile)
         {
-            double bonus = 0;
-            
-            if (each.getQuantity() > 2 )
-            {
-                bonus = each.GetSum() * readConfingfile.BonusRegular;
-            }
-          
-            return bonus;
+            return each.GetSum() * readConfingfile.BonusRegular;
         }
         public double FestiveBonusValue(Item each, ReadConfingfile readConfingfile)
         {

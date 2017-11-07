@@ -24,13 +24,14 @@ namespace software_evolution
 
         public ReadConfingfile()
         {
+            ValueView = ConfigurationManager.AppSettings.Get("view");
             Setconfing();
         }
 
 
         public void Setconfing()
         {    
-            ValueView = ConfigurationManager.AppSettings.Get("view");
+           
             if (ValueView == "standart")
             {
                
